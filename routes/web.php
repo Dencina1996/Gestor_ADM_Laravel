@@ -22,3 +22,7 @@ Route::post('detallesCliente','DetallesClienteController@detalles');
 Route::post('update','UpdateClienteController@update');
 Route::post('addFile','InsertarArchivoController@insertFile');
 Route::post('detallesVenta','DetallesVentaController@detalles');
+Route::post('insertVenta','InsertarVentaController@insert');
+Route::post('buscarNombre','BuscarNombreClientesController@index');
+Route::post('buscarDNI','BuscarDNIClientesController@index');
+Route::post('buscarLocalidad','BuscarLocalidadClientesController@index');

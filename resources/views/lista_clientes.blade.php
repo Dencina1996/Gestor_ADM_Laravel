@@ -11,8 +11,17 @@
 	</head>
 	<body>
 		@section('content')
+		
 		<a id="nuevoUsuario" class="buttonLinks" onclick="mostrarPanelUsuario()">Añadir Cliente</a>
 		<br><br><br>
+		<form method="post">
+			@csrf
+			<input type="text" name="textoBuscar">
+			<input type="submit" formaction="buscarNombre" name="Buscar" value="Buscar por nombre">
+			<input type="submit" formaction="buscarDNI" name="Buscar" value="Buscar por CIF/NIF">
+			<input type="submit" formaction="buscarLocalidad" name="Buscar" value="Buscar por Localidad">
+		</form>
+		<p name="textoBuscado"></p>
 		<div class="tablaClientes">
 			<table>
 				<tr>
@@ -49,23 +58,31 @@
 			<div class="formularioCliente" style="visibility: hidden;">
 				<form action = "/create" method = "post" onsubmit="return checkEmptyFields()">
 					@csrf
+					<label>Nombre</label>
 					<input type="text" name="name" placeholder="Nombre" maxlength="100">
-					<br>
+					<br><br>
+					<label>E-Mail</label>
 					<input type="email" name="mail" placeholder="Email" maxlength="100">
-					<br>
+					<br><br>
+					<label>Teléfono</label>
 					<input type="text" name="phone" placeholder="Teléfono" maxlength="9">
-					<br>
+					<br><br>
+					<label>CIF/NIF/DNI</label>
 					<input type="text" name="dni" placeholder="CIF/NIF" maxlength="9">
-					<br>
+					<br><br>
+					<label>Dirección</label>
 					<input type="text" name="address" placeholder="Dirección" maxlength="100">
-					<br>
+					<br><br>
+					<label>Província</label>
 					<input type="text" name="country" placeholder="Província" maxlength="50">
-					<br>
+					<br><br>
+					<label>Ciudad</label>
 					<input type="text" name="city" placeholder="Ciudad" maxlength="50">
-					<br>
+					<br><br>
+					<label>C. Postal</label>
 					<input type="text" name="cp" placeholder="Código Postal" maxlength="5">
-					<br>
-					<input type="submit" value="Registrar Cliente">
+					<br><br>
+					<input type="submit" value="Registrar Cliente" style="float: none;">
 					<p name="errors"></p>
 				</form>
 			</div>

@@ -1,13 +1,18 @@
 @extends('home')
 <html>
 	<head>
-		<title>Listado de Clientes</title>
+		<title>Detalles de la Venta</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/listaClientes.css') }}">
 		<link rel="shortcut icon" href="{{ asset('svg/favicon.png') }}">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script type="text/javascript" src="{{ asset('js/clientList.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/min.js') }}"></script>
+		<style type="text/css">
+			a {
+				text-decoration: none;
+			}
+		</style>
 	</head>
 	<body>
 		@section('content')
@@ -28,14 +33,14 @@
 			</tr>
 			@endforeach
 		</table>
-		<br><br><br>
-			<table>
+			<table style="margin-top: 20px; margin-bottom: 20px;">
 				<tr>
 					<td>ID Archivo</td>
 					<td>ID Cliente</td>
 					<td>ID Venta</td>
 					<td>Tipo</td>
 					<td>Ruta Archivo</td>
+					<td>Acciones</td>
 				</tr>
 				@foreach ($archivos as $archivo)
 				<tr>
@@ -44,10 +49,20 @@
 					<td>{{ $archivo->ID_Venta}}</td>
 					<td>{{ $archivo->Tipo}}</td>
 					<td>{{ $archivo->Ruta_Archivo}}</td>
+					<td>
+						<a href="storage/{{ $archivo->Ruta_Archivo}}" target="_blank">
+							<img id="viewFile" src="svg/ojo.png" style="width: 32px; height: 32px;border: solid 1px black;">
+						</a>
+						<a href="storage/{{ $archivo->Ruta_Archivo}}" download>
+							<img id="viewFile" src="svg/download.png" style="width: 32px; height: 32px;border: solid 1px black;">
+						</a>
+						<a href="storage/{{ $archivo->Ruta_Archivo}}">
+							<img id="viewFile" src="svg/update.png" style="width: 32px; height: 32px;border: solid 1px black;">
+						</a>
+					</td>
 				</tr>
 				@endforeach
 			</table>
-			<br><br><br><br><br>
 		</div>
 			<div class="FormularioArchivos">
 			<p name="error" align="center"></p>

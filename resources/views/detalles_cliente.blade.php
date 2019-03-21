@@ -1,7 +1,7 @@
 @extends('home')
 <html>
 	<head>
-		<title>Listado de Clientes</title>
+		<title>Detalles del Cliente</title>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="{{ asset('css/listaClientes.css') }}">
 		<link rel="shortcut icon" href="{{ asset('svg/favicon.png') }}">
@@ -11,6 +11,7 @@
 	</head>
 	<body>
 		@section('content')
+		<a id="nuevoUsuario" class="buttonLinks" onclick="mostrarPanelUsuario()">Añadir Venta</a>
 		<br><br><br>
 		<div class="tablaClientes">
 			<table>
@@ -76,8 +77,7 @@
 					<input type="submit" name="submit" value="Guardar">
 				</form>
 			</div>
-			<br><br><br><br><br><br>
-			<table>
+			<table style="margin-top: 20px;">
 				<tr>
 					<td>ID Venta</td>
 					<td>Descripcion</td>
@@ -98,8 +98,22 @@
 				</tr>
 				@endforeach
 			</table>
-			@stop
-			@csrf
+			<div class="formularioCliente" style="display: none;">
+				<form action = "insertVenta" method = "post" onsubmit="return checkEmptyFields()">
+					@csrf
+					<label for="descripcion">Descripción</label><br>
+					<input type="text" name="descripcion" placeholder="Descripción" maxlength="100">
+					<br>
+					<input type="text" name="estado" placeholder="Estado" maxlength="9" value="Activa" style="display: none;">
+					<br>
+					<input type="text" name="id_Cliente" placeholder="ID Cliente" maxlength="9" value="{{ $cliente->ID_Cliente}}" style="display: none;">
+					<br>
+					<input type="submit" value="Añadir Venta">
+					<p name="errors"></p>
+				</form>
+			</div>
 		</div>
+		@stop
+		@csrf
 	</body>
 </html>
